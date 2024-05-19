@@ -1,0 +1,62 @@
+/* style.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    text-align: center;
+}
+
+.container {
+    max-width: 800px;
+    margin: auto;
+    padding: 20px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tabs {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.tab {
+    padding: 10px;
+    background-color: #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tab.active {
+    background-color: #333;
+    color: #fff;
+}
+
+.task-list,
+.gratitude-log,
+.habit-tracker,
+.meal-planning,
+.budget-planning,
+.water-tracker,
+.mood-tracker,
+.sleep-tracker,
+.workout-tracker {
+    margin-top: 20px;
+}
+
+.tracker {
+    margin-bottom: 20px;
+}

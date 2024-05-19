@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="logo.png" type="image/x-icon">
+    <title>Digital Bullet Journal</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Digital Bullet Journal</h1>
+    </header>
+    <nav>
+        <ul class="tabs">
+            <li><a href="tasks.html" class="navlink active" data-tab="tasks">Daily Task List</a></li>
+            <li><a href="calendar.html" class="navlink" data-tab="calendar">Calendar</a></li>
+            <li><a href="habit.html" class="navlink" data-tab="habit">Habit Tracker</a></li>
+            <li><a href="meal.html" class="navlink" data-tab="meal">Meal Planning</a></li>
+            <li><a href="budget.html" class="navlink" data-tab="budget">Budget Planning</a></li>
+            <li><a href="water.html" class="navlink" data-tab="water">Water Tracker</a></li>
+            <li><a href="mood.html" class="navlink" data-tab="mood">Daily Mood Tracker</a></li>
+            <li><a href="sleep.html" class="navlink" data-tab="sleep">Sleep Tracker</a></li>
+            <li><a href="workout.html" class="navlink" data-tab="workout">Workout</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <!-- Content for each tab -->
+        <div class="tabContent active task-list" id="tasks">
+          
+        </div>
+    </div>
+
+    <script>
+        // JavaScript kód
+        const navLinks = document.querySelectorAll('.navlink');
+
+        navLinks.forEach(link => 
+        {
+            link.addEventListener('click', function(event)
+            {
+                event.preventDefault();
+                const tabName = this.dataset.tab;
+                document.querySelector('.navlink.active').classList.remove('active');
+                this.classList.add('active');
+                loadContent(tabName);
+                const tabContent = document.querySelector(`[data-tab=${tabName}]`);
+                tabContent.classList.add('active');
+            });
+        });
+
+        function loadContent(tabName) {
+            const xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    const tabContent = document.querySelector(`.tabContent`);
+                    tabContent.innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open('GET', `${tabName}.html`, true);
+            xhr.send();
+        }
+    </script>
+</body>
+</html>
