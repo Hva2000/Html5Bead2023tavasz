@@ -13,7 +13,7 @@
     </header>
     <nav>
         <ul class="tabs">
-            <li><a href="tasks.html" class="navlink active" data-tab="tasks">Daily Task List</a></li>
+            <li><a href="tasks.html" class="navlink" data-tab="tasks">Daily Task List</a></li>
             <li><a href="calendar.html" class="navlink" data-tab="calendar">Calendar</a></li>
             <li><a href="habit.html" class="navlink" data-tab="habit">Habit Tracker</a></li>
             <li><a href="meal.html" class="navlink" data-tab="meal">Meal Planning</a></li>
@@ -26,7 +26,7 @@
     </nav>
     <div class="container">
         <!-- Content for each tab -->
-        <div class="tabContent active task-list" id="tasks">
+        <div class="tabContent">
           
         </div>
     </div>
@@ -41,11 +41,12 @@
             {
                 event.preventDefault();
                 const tabName = this.dataset.tab;
-                document.querySelector('.navlink.active').classList.remove('active');
-                this.classList.add('active');
+                let active = document.querySelector('.navlink.active');
+                if (active != null) {
+                    active.classList.remove('active');
+                }
                 loadContent(tabName);
-                const tabContent = document.querySelector(`[data-tab=${tabName}]`);
-                tabContent.classList.add('active');
+                this.classList.add('active');
             });
         });
 
